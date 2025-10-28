@@ -8,14 +8,17 @@ export default function Signup({ navigation }) {
 
 
 
-  const handleSignup = () => {
-    if (email && password) {
-      alert('Account created!');
-      navigation.navigate('Login');
-    } else {
-      alert('Please fill in all fields');
-    }
-  };
+const handleSignup = () => {
+  if (email && password && username) {
+    alert('Account created!');
+    navigation.replace('Home'); // ✅ replaces Signup so it won’t come back
+  } else {
+    alert('Please fill in all fields');
+  }
+};
+
+
+
 
   return (
     <View style={styles.container}>
@@ -112,9 +115,10 @@ export default function Signup({ navigation }) {
         />
 
       </View>
-             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.buttonText}>Create Account</Text>
-        </TouchableOpacity>
+         <TouchableOpacity style={styles.button} onPress={handleSignup}>
+  <Text style={styles.buttonText}>Create Account</Text>
+</TouchableOpacity>
+
 
               <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.back}>← Back to Login</Text>
