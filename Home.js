@@ -1,15 +1,6 @@
 // App.js
 import React, { createContext, useContext, useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TextInput,
-  Button,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View,Text,StyleSheet,Image,TextInput,Button,ScrollView,TouchableOpacity,I} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from './ProfileScreen';
 import LikeScreen from './LikeScreen';
@@ -280,43 +271,65 @@ const HomeScreen = () => {
 };
 
 // ---------- Tab Decorations ----------
-const getTabDecoration = (routeName) => {
+const getTabDecoration = (routeName, focused) => {
   switch (routeName) {
     case 'MainHome':
-      return <Text style={{ fontSize: 20, bottom: -15 }}>🏠</Text>;
+      return (
+        <MaterialCommunityIcons
+          name={focused ? 'home' : 'home-outline'}
+          size={26}
+          color={focused ? '#ff6f61' : '#363131ff'}
+        />
+      );
+
     case 'Likes':
-      return <Text style={{ fontSize: 20, bottom: -15 }}>❤️</Text>;
+      return (
+        <MaterialCommunityIcons
+          name={focused ? 'heart' : 'heart-outline'}
+          size={26}
+          color={focused ? '#ff6f61' :'#363131ff'}
+        />
+      );
+
     case 'Profile':
-      return <Text style={{ fontSize: 20, bottom: -15 }}>👤</Text>;
+      return (
+         <MaterialCommunityIcons
+          name={focused ? 'account' : 'account-outline'}
+          size={26}
+          color={focused ? '#ff6f61' : '#363131ff'}
+        />
+      );
+
     default:
       return null;
   }
 };
 
+
 // ---------- Main App Component ----------
 export default function App() {
   return (
     <LikedRecipesProvider>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: () => <View>{getTabDecoration(route.name)}</View>,
-          tabBarActiveTintColor: '#ff6f61',
-          tabBarInactiveTintColor: 'gray',
-          tabBarStyle: {
-            backgroundColor: '#CEA8A6',
-            borderTopWidth: 0,
-            elevation: 10,
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            width: '100%',
-            height: 70,
-          },
-          headerShown: false,
-        })}
-      >
-        <Tab.Screen name="MainHome" component={HomeScreen} options={{ tabBarLabel: '' }} />
+   <Tab.Navigator
+  screenOptions={({ route }) => ({
+    tabBarIcon: ({ focused }) => getTabDecoration(route.name, focused),
+    tabBarActiveTintColor: '#ff6f61',
+    tabBarInactiveTintColor: 'gray',
+    tabBarStyle: {
+      backgroundColor: '#CEA8A6',
+      borderTopWidth: 0,
+      elevation: 10,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: '100%',
+      height: 70,
+    },
+    headerShown: false,
+  })}
+>
+      <Tab.Screen name="MainHome" component={HomeScreen} options={{ tabBarLabel: '' }} />
         <Tab.Screen name="Likes" component={LikeScreen} options={{ tabBarLabel: '' }} />
         <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: '' }} />
       </Tab.Navigator>
@@ -336,7 +349,7 @@ const styles = StyleSheet.create({
   pancake: { position: 'absolute', top: 300, left: 270, width: 152, height: 154, opacity: 0.2, transform: [{ rotate: '10deg' }] },
   donut: { position: 'absolute', top: 500, left: 180, width: 126, height: 127, opacity: 0.2 },
   pizza: { position: 'absolute', top: 420, left: 10, width: 126, height: 127, opacity: 0.2 },
-
+ 
   recipeBox: { backgroundColor: '#CEA8A6', padding: 15, borderRadius: 12, marginBottom: 20, width: '90%' },
   recipeTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
   input: { backgroundColor: '#fff', borderColor: '#ccc', borderWidth: 1, borderRadius: 8, padding: 8, marginBottom: 10 },

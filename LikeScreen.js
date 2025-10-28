@@ -161,32 +161,17 @@ const recipeDatabase = [
     ],
   }
 ]
-   
-// // ---------- Context for Liked Recipes ----------
-// const LikedRecipesContext = createContext();
-// export const useLikedRecipes = () => useContext(LikedRecipesContext);
-
-// const LikedRecipesProvider = ({ children }) => {
-//   const [likedRecipes, setLikedRecipes] = useState([]);
-//   return (
-//     <LikedRecipesContext.Provider value={{ likedRecipes, setLikedRecipes }}>
-//       {children}
-//     </LikedRecipesContext.Provider>
-//   );
-// };
 
   return (
-    
-        <View style={styles.images={flex: 1,}}>
+        <View style={styles.images={flex:1,Top:1000}}>
           <Image source={require('./assets/burgerr.png')} style={styles.burger} />
           <Image source={require('./assets/fries.png')} style={styles.fries} />
           <Image source={require('./assets/boba.png')} style={styles.boba} />
           <Image source={require('./assets/pancake.png')} style={styles.pancake} />
           <Image source={require('./assets/donut.png')} style={styles.donut} />
           <Image source={require('./assets/cookie.png')} style={styles.cookie} />
-          <Image source={require('./assets/pizza.png')} style={styles.pizza} />
-        
-    <ScrollView style={{  backgroundColor: '#F8E4DA', padding: 20 }}>
+          <Image source={require('./assets/pizza.png')} style={styles.pizza} />    
+    <ScrollView style={{  backgroundColor: '#F8E4DA', padding: 20, flex:1}}>
       {likedRecipes.length > 0 ? (
         likedRecipes.map((r, i) => {
           const recipe = recipeDatabase.find((recipe) => recipe.name === r);
@@ -315,12 +300,5 @@ const styles = StyleSheet.create({
     height: 127,
     zIndex: 1,
     opacity: 0.2,
-  },
-  images: {
-    position: 'absolute',
-    top: 1000,
-    left: 20,
-    right: 0,
-    bottom: 0,
   },
 });
