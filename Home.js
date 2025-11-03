@@ -1,6 +1,6 @@
 // App.js
 import React, { createContext, useContext, useState } from 'react';
-import {View,Text,StyleSheet,Image,TextInput,Button,ScrollView,TouchableOpacity,I} from 'react-native';
+import {View,Text,StyleSheet,Image,TextInput,Button,ScrollView,TouchableOpacity} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from './ProfileScreen';
 import LikeScreen from './LikeScreen';

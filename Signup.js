@@ -1,131 +1,116 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Image} from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Alert,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Signup({ navigation }) {
-   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
 
+  const handleSignup = async () => {
+    try {
+      if (!email || !password || !username) {
+        Alert.alert("Error", "Please fill in all fields!");
+        return;
+      }
 
+      if (password !== confirmPassword) {
+        Alert.alert("Error", "Passwords do not match!");
+        return;
+      }
 
-const handleSignup = () => {
-  if (email && password && username) {
-    alert('Account created!');
-    navigation.replace('Home'); // ✅ replaces Signup so it won’t come back
-  } else {
-    alert('Please fill in all fields');
-  }
-};
+      // ✅ Save user data under the same key used in ProfileScreen
+      const userData = { username, email, password };
+      await AsyncStorage.setItem("user", JSON.stringify(userData));
 
+      Alert.alert("Success", "Account created successfully!");
 
-
+      // ✅ Navigate to ProfileScreen directly (so you can check)
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("Error saving user data:", error);
+      Alert.alert("Something went wrong while signing up!");
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-      </Text>
-<View>
-  <Image
-    source={require('./assets/burgerr.png')}
-    style={styles.burger}
-    resizeMode="cover"
-  />
+       <View style={styles.images}>
+      <Image source={require("./assets/burgerr.png")} style={styles.burger} resizeMode="cover" />
+      <Image source={require("./assets/fries.png")} style={styles.fries} resizeMode="cover" />
+      <Image source={require("./assets/boba.png")} style={styles.boba} resizeMode="cover" />
+      <Image source={require("./assets/pancake.png")} style={styles.pancake} resizeMode="cover" />
+      <Image source={require("./assets/donut.png")} style={styles.donut} resizeMode="cover" />
+      <Image source={require("./assets/cookie.png")} style={styles.cookie} resizeMode="cover" />
+      <Image source={require("./assets/pizza.png")} style={styles.pizza} resizeMode="cover" />
 </View>
+      <View style={styles.group}>
+        <View style={styles.outerBox}>
+          <Text style={styles.boxTitle}>Sign Up</Text>
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/fries.png')}
-    style={styles.fries}
-    resizeMode="cover"
-  />
-</View>
+          {/* Username */}
+          <Text style={styles.subtitle1}>Username</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+            placeholder="Enter your username"
+            placeholderTextColor="#ccc"
+          />
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/boba.png')}
-    style={styles.boba}
-    resizeMode="cover"
-  />
-</View>
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/pancake.png')}
-    style={styles.pancake}
-    resizeMode="cover"
-  />
-</View><View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/donut.png')}
-    style={styles.donut}
-    resizeMode="cover"
-  />
-</View>
+          {/* Email */}
+          <Text style={styles.subtitle2}>Email</Text>
+          <TextInput
+            style={styles.input}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            placeholder="Enter your email"
+            placeholderTextColor="#ccc"
+          />
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/cookie.png')}
-    style={styles.cookie}
-    resizeMode="cover"
-  />
-</View>
+          {/* Password */}
+          <Text style={styles.subtitle3}>Password</Text>
+          <TextInput
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            placeholder="Enter your password"
+            placeholderTextColor="#ccc"
+          />
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
-  <Image
-    source={require('./assets/pizza.png')}
-    style={styles.pizza}
-    resizeMode="cover"
-  />
-</View>
+          {/* Confirm Password */}
+          <Text style={styles.subtitle4}>Confirm Password</Text>
+          <TextInput
+            style={styles.input}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry
+            placeholder="Confirm your password"
+            placeholderTextColor="#ccc"
+          />
 
-<View style={styles.group}>
-      {/* Outer box containing inner boxes */}
-      <View style={styles.outerBox}>
-        <Text style={styles.boxTitle}>SignIn</Text>
-      <View style={styles.g1}>
-      <Text style={styles.subtitle1}>Username</Text>
-      <TextInput
-        style={styles.input}
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-      />
-       <Text style={styles.subtitle2}>Email</Text>
-      <TextInput
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-      />
+          {/* Create Account Button */}
+          <TouchableOpacity style={styles.button} onPress={handleSignup}>
+            <Text style={styles.buttonText}>Create Account</Text>
+          </TouchableOpacity>
+
+          {/* Back to Login */}
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.back}>← Back to Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.g2}>
-       <Text style={styles.subtitle3}> Password</Text>
-       <TextInput
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-              
-        <Text style={styles.subtitle4}>Confirm Password</Text>
-        <TextInput
-          style={styles.input}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-
-      </View>
-         <TouchableOpacity style={styles.button} onPress={handleSignup}>
-  <Text style={styles.buttonText}>Create Account</Text>
-</TouchableOpacity>
-
-
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.back}>← Back to Login</Text>
-        </TouchableOpacity>
-
-      </View>
-    </View>
     </View>
   );
 }
@@ -137,6 +122,7 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: 'center',
     backgroundColor: '#F8E4DA',
+  
   },
   title: {
     fontSize: 28,
@@ -155,6 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     alignItems: 'center',
+    color:'#fff'
   },
   button: {
  backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -187,11 +174,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#444',
     marginTop:70,
+  top:-15
   },
   boxText: {
     color: '#333',
     fontWeight: '500',
     textAlign: 'center',
+  
   },
   subtitle1:{
   marginBottom: -20,           // pushes the subtitle down
@@ -200,7 +189,7 @@ const styles = StyleSheet.create({
   color: '#333',
   padding: 12,
   marginVertical: 6,
-  marginRight:90,
+  marginRight:150,
   marginTop:-10,
   },
 
@@ -221,7 +210,7 @@ const styles = StyleSheet.create({
   color: '#333',
   padding: 12,
   marginVertical: 6,
-  marginRight:180,
+  marginRight:155,
   marginTop:-12,
   },
 subtitle4:{
@@ -231,7 +220,7 @@ subtitle4:{
   color: '#333',
   padding: 12,
   marginVertical: 6,
-  marginRight:90,
+  marginRight:100,
     marginTop:-20,
   },
   back:{
@@ -327,14 +316,8 @@ position: 'absolute', // enables manual placement
   color: '#333',
   fontWeight: 'bold',
   textDecorationLine: 'underline',
-},
-
-
-//   signin:{
-// marginBottom:2,
-
-//   }
-  
+ },
+ images:{
+  top:40
+ }
 });
-
-

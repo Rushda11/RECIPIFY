@@ -163,7 +163,7 @@ const recipeDatabase = [
 ]
 
   return (
-        <View style={styles.images={flex:1,Top:1000}}>
+        <View style={styles.images}>
           <Image source={require('./assets/burgerr.png')} style={styles.burger} />
           <Image source={require('./assets/fries.png')} style={styles.fries} />
           <Image source={require('./assets/boba.png')} style={styles.boba} />
@@ -171,7 +171,7 @@ const recipeDatabase = [
           <Image source={require('./assets/donut.png')} style={styles.donut} />
           <Image source={require('./assets/cookie.png')} style={styles.cookie} />
           <Image source={require('./assets/pizza.png')} style={styles.pizza} />    
-    <ScrollView style={{  backgroundColor: '#F8E4DA', padding: 20, flex:1}}>
+    <ScrollView style={{  backgroundColor: '#F8E4DA', padding: 20,bottom:200,left:-20}}>
       {likedRecipes.length > 0 ? (
         likedRecipes.map((r, i) => {
           const recipe = recipeDatabase.find((recipe) => recipe.name === r);
@@ -301,4 +301,9 @@ const styles = StyleSheet.create({
     zIndex: 1,
     opacity: 0.2,
   },
+  images:{
+    flex:1,
+    top:200,
+    left:20
+  }
 });
