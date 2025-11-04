@@ -1,4 +1,3 @@
-// App.js
 import React, { createContext, useContext, useState } from 'react';
 import {View,Text,StyleSheet,Image,TextInput,Button,ScrollView,TouchableOpacity} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,8 +7,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 const Tab = createBottomTabNavigator();
-
-// ---------- Recipe Database ----------
 const recipeDatabase = [
   {
     name: '🍳 Classic Omelette',
@@ -163,8 +160,6 @@ const recipeDatabase = [
     ],
   },
 ];
-
-// ---------- Context for Liked Recipes ----------
 const LikedRecipesContext = createContext();
 export const useLikedRecipes = () => useContext(LikedRecipesContext);
 
@@ -177,7 +172,6 @@ const LikedRecipesProvider = ({ children }) => {
   );
 };
 
-// ---------- Utility Function ----------
 function getRecipeFromIngredients(inputIngredients) {
   const ingredients = inputIngredients.map((i) => i.trim().toLowerCase());
   let matches = recipeDatabase.filter((recipe) =>
@@ -191,7 +185,6 @@ function getRecipeFromIngredients(inputIngredients) {
   return matches;
 }
 
-// ---------- Home Screen ----------
 const HomeScreen = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
@@ -213,7 +206,6 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container2}>
-      {/* Background images */}
       <View style={styles.backgroundContainer}>
         <Image source={require('./assets/burgerr.png')} style={styles.burger} />
         <Image source={require('./assets/fries.png')} style={styles.fries} />
@@ -223,10 +215,7 @@ const HomeScreen = () => {
         <Image source={require('./assets/cookie.png')} style={styles.cookie} />
         <Image source={require('./assets/pizza.png')} style={styles.pizza} />
       </View>
-
-      {/* Foreground */}
       <View style={styles.foregroundContainer}>
-        {/* Recipe Generator Box */}
         <View style={styles.recipeBox}>
           <Text style={styles.recipeTitle}>🍳 Recipe Generator</Text>
           <TextInput
@@ -238,7 +227,6 @@ const HomeScreen = () => {
           <Button title="Get Recipes" onPress={handleGenerateRecipe} />
         </View>
 
-        {/* Recipes List */}
         <ScrollView style={styles.recipeScrollBox} contentContainerStyle={{ paddingBottom: 100 }}>
           {recipes.length > 0 ? (
             recipes.map((r, index) => (
@@ -269,8 +257,6 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-// ---------- Tab Decorations ----------
 const getTabDecoration = (routeName, focused) => {
   switch (routeName) {
     case 'MainHome':
@@ -305,8 +291,6 @@ const getTabDecoration = (routeName, focused) => {
   }
 };
 
-
-// ---------- Main App Component ----------
 export default function App() {
   return (
     <LikedRecipesProvider>
@@ -337,7 +321,6 @@ export default function App() {
   );
 }
 
-// ---------- Styles ----------
 const styles = StyleSheet.create({
   container2: { flex: 1, backgroundColor: '#F8E4DA' },
   backgroundContainer: { ...StyleSheet.absoluteFillObject, zIndex: 0, top: 200, left: 20 },

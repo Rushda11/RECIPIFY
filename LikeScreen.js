@@ -1,10 +1,7 @@
-// LikesScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { useLikedRecipes } from './Home'; // or './App' if your context is there
+import { useLikedRecipes } from './Home';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-// ---------- Likes Screen ----------
 const LikeScreen = () => {
   const { likedRecipes } = useLikedRecipes();
 const recipeDatabase = [
@@ -233,8 +230,6 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 22,
   },
-
-  // Background images (same as before)
   burger: {
     position: 'absolute',
     top: 150,

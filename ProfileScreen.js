@@ -12,7 +12,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function ProfileScreen({ route, navigation }) {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
 
-  // Load user data from AsyncStorage or route params
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -21,7 +20,7 @@ export default function ProfileScreen({ route, navigation }) {
           setUser(JSON.parse(storedUser));
         } else if (route?.params) {
           setUser(route.params);
-          await AsyncStorage.setItem("user", JSON.stringify(route.params)); // ✅ ensure saved if new
+          await AsyncStorage.setItem("user", JSON.stringify(route.params));
         }
       } catch (error) {
         console.log("Error loading user:", error);
@@ -38,7 +37,7 @@ export default function ProfileScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <ScrollView style={{ flex: 1, backgroundColor: "#F8E4DA" }}>
-        {/* Food images background */}
+
         <View style={styles.images}>
           <Image source={require("./assets/burgerr.png")} style={styles.burger} />
           <Image source={require("./assets/fries.png")} style={styles.fries} />
@@ -49,7 +48,6 @@ export default function ProfileScreen({ route, navigation }) {
           <Image source={require("./assets/pizza.png")} style={styles.pizza} />
         </View>
 
-        {/* Profile Box */}
         <View style={styles.profileCard}>
           <Image
             source={{
@@ -60,7 +58,6 @@ export default function ProfileScreen({ route, navigation }) {
 
           <Text style={styles.title}>My Profile</Text>
 
-          {/* User Info Boxes */}
           <View style={styles.infoBox}>
             <Text style={styles.label}>Username</Text>
             <Text style={styles.value}>{user.username || "N/A"}</Text>
@@ -78,7 +75,6 @@ export default function ProfileScreen({ route, navigation }) {
             </Text>
           </View>
 
-          {/* Logout Button */}
           <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
             <Text style={styles.logoutText}>Log Out</Text>
           </TouchableOpacity>

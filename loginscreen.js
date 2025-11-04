@@ -25,7 +25,7 @@ export default function LoginScreen({ navigation }) {
   />
 </View>
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
+<View> 
   <Image
     source={require('./assets/fries.png')}
     style={styles.fries}
@@ -33,20 +33,20 @@ export default function LoginScreen({ navigation }) {
   />
 </View>
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
+<View>  
   <Image
     source={require('./assets/boba.png')}
     style={styles.boba}
     resizeMode="cover"
   />
 </View>
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
+<View> 
   <Image
     source={require('./assets/pancake.png')}
     style={styles.pancake}
     resizeMode="cover"
   />
-</View><View>  {/* ✅ changed from styles.burger to styles.orange */}
+</View><View> 
   <Image
     source={require('./assets/donut.png')}
     style={styles.donut}
@@ -54,7 +54,7 @@ export default function LoginScreen({ navigation }) {
   />
 </View>
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
+<View>  
   <Image
     source={require('./assets/cookie.png')}
     style={styles.cookie}
@@ -62,7 +62,7 @@ export default function LoginScreen({ navigation }) {
   />
 </View>
 
-<View>  {/* ✅ changed from styles.burger to styles.orange */}
+<View> 
   <Image
     source={require('./assets/pizza.png')}
     style={styles.pizza}
@@ -71,7 +71,6 @@ export default function LoginScreen({ navigation }) {
 </View>
 
 <View style={styles.group}>
-      {/* Outer box containing inner boxes */}
       <View style={styles.outerBox}>
         <Text style={styles.boxTitle}>Login</Text>
       <View style={styles.g1}>
@@ -102,7 +101,6 @@ export default function LoginScreen({ navigation }) {
     <Text style={styles.signin}> Signin</Text>
   </TouchableOpacity>
 </Text>
- 
       </View>
     </View>
     </View>
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   outerBox: {
-  justifyContent: 'center',   // centers vertically
+  justifyContent: 'center',  
   alignItems: 'center',  
     padding: 16,
     backgroundColor: '#CEA8A6',
@@ -172,7 +170,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subtitle1:{
-  marginBottom: -20,           // pushes the subtitle down
+  marginBottom: -20,       
   fontSize: 16,
   fontWeight: '500',
   color: '#333',
@@ -182,7 +180,7 @@ const styles = StyleSheet.create({
   },
 
   subtitle2:{
-  marginBottom: -20,           // pushes the subtitle down
+  marginBottom: -20,        
   fontSize: 16,
   fontWeight: '500',
   color: '#333',
@@ -208,9 +206,9 @@ marginTop:20,
     marginTop:-10,
   },
   burger:{
-  position: 'absolute', // enables manual placement
-  top: 150,              // Y-axis (distance from top)
-  left: -80,              // X-axis (distance from left)
+  position: 'absolute', 
+  top: 150,              
+  left: -80,            
   width: 155,
   height: 147,
   zIndex: 10,
@@ -218,9 +216,9 @@ marginTop:20,
   },
 
   fries:{
-  position: 'absolute', // enables manual placement
-  top: 90,              // Y-axis (distance from top)
-  left: 240,              // X-axis (distance from left)
+  position: 'absolute',
+  top: 90,            
+  left: 240,             
   width: 150,
   height: 140,
   zIndex: 10,
@@ -228,31 +226,28 @@ marginTop:20,
   transform: [{ rotate: '-15deg' }], 
  },
  boba:{
-position: 'absolute', // enables manual placement
-  top: -200,              // Y-axis (distance from top)
-  left: -19,              // X-axis (distance from left)
+position: 'absolute',
+  top: -200,            
+  left: -19,           
   width: 100,
   height: 210,
   zIndex: 10,
   opacity: 0.2,
-// rotate: '45deg' ,
-//    scale: 1.1 , // slightly enlarge
-//    translateX: 10
 transform: [{ rotate: '15deg' }], 
  },
   cookie:{
-position: 'absolute', // enables manual placement
-  top: -120,              // Y-axis (distance from top)
-  left: 275,              // X-axis (distance from left)
+position: 'absolute',
+  top: -120,              
+  left: 275,             
   width: 137,
   height: 126,
   zIndex: 10,
   opacity: 0.2,
   },
   pancake:{
-  position: 'absolute', // enables manual placement
-  top: 300,              // Y-axis (distance from top)
-  left: 270,              // X-axis (distance from left)
+  position: 'absolute',
+  top: 300,            
+  left: 270,           
   width: 152,
   height: 154,
   zIndex: 10,
@@ -260,9 +255,9 @@ position: 'absolute', // enables manual placement
   transform: [{ rotate: '10deg' }],
   },
 donut:{
-position: 'absolute', // enables manual placement
-  top: 500,              // Y-axis (distance from top)
-  left: 180,              // X-axis (distance from left)
+position: 'absolute', 
+  top: 500,              
+  left: 180,            
   width: 126,
   height: 127,
   zIndex: 10,
@@ -270,9 +265,9 @@ position: 'absolute', // enables manual placement
   },
   
  pizza:{
-position: 'absolute', // enables manual placement
-  top: 420,              // Y-axis (distance from top)
-  left: 10,              // X-axis (distance from left)
+position: 'absolute',
+  top: 420,           
+  left: 10,             
   width: 126,
   height: 127,
   zIndex: 10,
@@ -283,7 +278,4 @@ position: 'absolute', // enables manual placement
   fontWeight: 'bold',
   textDecorationLine: 'underline',
 },
-
 });
-
-
