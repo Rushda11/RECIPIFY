@@ -1,0 +1,12 @@
+##github
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/CollegeApp.git
+git push -u origin main
+
+
+##creating a file
+npx create-expo-app@latest newapp --template blank@sdk-49
+
